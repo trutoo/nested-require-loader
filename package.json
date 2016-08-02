@@ -1,7 +1,7 @@
 {
   "name": "nested-require-loader",
   "version": "0.1.0",
-  "description": "Simple nested require loader for webpack",
+  "description": "Simply a nested require loader for webpack",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover node_modules/mocha/bin/_mocha test -- --timeout 20000",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/trutoo/nested-require-loader/issues"
   },
-  "homepage": "https://github.com/trutoo/nested-require-loader",
+  "homepage": "https://github.com/trutoo/nested-require-loader.git",
   "dependencies": {
     "steed": "^1.1.2"
   },
