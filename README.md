@@ -1,11 +1,11 @@
 [![Build Status](https://img.shields.io/travis/markdalgleish/web-app-manifest-loader/master.svg?style=flat-square)](http://travis-ci.org/markdalgleish/web-app-manifest-loader) [![Coverage Status](https://img.shields.io/coveralls/markdalgleish/web-app-manifest-loader/master.svg?style=flat-square)](https://coveralls.io/r/markdalgleish/web-app-manifest-loader) [![npm](https://img.shields.io/npm/v/web-app-manifest-loader.svg?style=flat-square)](https://www.npmjs.com/package/web-app-manifest-loader)
 
-# web-app-manifest-loader
+# nested-require-loader
 
-Load images referenced in the `icons` and `splash_screens` fields in your [Web App Manifest](http://www.w3.org/TR/appmanifest/) using [webpack](https://github.com/webpack/webpack).
+Simply resolves any require calls nested in a file using [webpack](https://github.com/webpack/webpack).
 
 ```bash
-$ npm install --save-dev web-app-manifest-loader
+$ npm install --save-dev nested-require-loader
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ module: {
   loaders: [
     {
       test: /manifest.json$/,
-      loader: 'file-loader?name=manifest.json!web-app-manifest-loader'
+      loader: 'file-loader?name=manifest.json!nested-require-loader'
     }
   ]
 }
@@ -27,13 +27,13 @@ module: {
 
 Note that this example also uses [file-loader](https://github.com/webpack/file-loader).
 
-Then, require the manifest in your application code:
+For example load a [Web App Manifest](http://www.w3.org/TR/appmanifest/) through require in your application code:
 
 ```js
 require('./manifest.json');
 ```
 
-This allows you to provide image paths in the standard webpack format inside your manifest:
+With each internal resource requested through require rather than just a plain path:
 
 ```js
 {
@@ -41,7 +41,7 @@ This allows you to provide image paths in the standard webpack format inside you
   ...
   "splash_screens": [
     {
-      "src": "./images/splash-hi.png",
+      "src": "require('./images/splash-hi.png')",
       "sizes": "2560x1440",
       "type": "image/png"
     },
@@ -49,7 +49,7 @@ This allows you to provide image paths in the standard webpack format inside you
   ],
   "icons": [
     {
-      "src": "./images/icon-hi.png",
+      "src": "require('./images/icon-hi.png')",
       "sizes": "512x512",
       "type": "image/png"
     },
@@ -57,7 +57,3 @@ This allows you to provide image paths in the standard webpack format inside you
   ]
 }
 ```
-
-## License
-
-[MIT License](http://markdalgleish.mit-license.org/)

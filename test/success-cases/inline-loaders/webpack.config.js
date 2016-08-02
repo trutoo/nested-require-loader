@@ -13,7 +13,7 @@ module.exports = {
       {
         test: /manifest.json$/,
         loader: 'file?name=manifest.json!../../../index.js'
-      }
+      },
     ]
   }
 };

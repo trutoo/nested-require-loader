@@ -1,24 +1,23 @@
 {
-  "name": "web-app-manifest-loader",
-  "version": "0.1.1",
-  "description": "Web app manifest loader for webpack",
+  "name": "nested-require-loader",
+  "version": "0.1.0",
+  "description": "Simple nested require loader for webpack",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover _mocha test -- --timeout 20000",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha test -- --timeout 20000",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markdalgleish/web-app-manifest-loader.git"
+    "url": "git+https://github.com/trutoo/nested-require-loader.git"
   },
-  "author": "Mark Dalgleish",
+  "author": "Trutoo AB",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/markdalgleish/web-app-manifest-loader/issues"
+    "url": "https://github.com/trutoo/nested-require-loader/issues"
   },
-  "homepage": "https://github.com/markdalgleish/web-app-manifest-loader#readme",
+  "homepage": "https://github.com/trutoo/nested-require-loader",
   "dependencies": {
-    "loader-utils": "^0.2.12",
     "steed": "^1.1.2"
   },
   "devDependencies": {
