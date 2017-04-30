@@ -4,7 +4,7 @@ var steed = require('steed');
 function resolveFile(loaderContext, require, callback) {
 
   var dirname = path.dirname(loaderContext.resourcePath);
-  var __webpack_public_path__ = loaderContext.options.output.publicPath || '';
+  var __webpack_public_path__ = loaderContext._compilation.options.output.publicPath || '';
 
   loaderContext.resolve(dirname, require.path, function(err, filename) {
     if (err) {
