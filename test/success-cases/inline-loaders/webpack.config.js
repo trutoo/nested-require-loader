@@ -9,10 +9,10 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /manifest.json$/,
-        loader: 'file?name=manifest.json!../../../index.js'
+        use: ['file-loader?name=manifest.json', './index.js?rawString=true']
       },
     ]
   }
