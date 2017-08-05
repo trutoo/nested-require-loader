@@ -1,10 +1,13 @@
 var path = require('path');
 var steed = require('steed');
+var loaderUtils = require('loader-utils');
+var schema = require('./options-schema.json');
+var ajv = new require('ajv')({ useDefaults: true });
 
-function resolveFile(loaderContext, require, callback) {
+function resolveFile(loaderContext, loaderOptions, require, callback) {
 
   var dirname = path.dirname(loaderContext.resourcePath);
-  var __webpack_public_path__ = loaderContext.options.output.publicPath || '';
+  var __webpack_public_path__ = loaderContext._compilation.options.output.publicPath || '';
 
   loaderContext.resolve(dirname, require.path, function(err, filename) {
     if (err) {
@@ -21,7 +24,9 @@ function resolveFile(loaderContext, require, callback) {
       }
 
       try {
-        require.result = JSON.stringify(eval(source));
+        var result = eval(source);
+        // Ensure that extra quotes are not added if the result is already a string
+        require.result = typeof result === 'string' && loaderOptions.rawString ? result : JSON.stringify(result);
         callback(null, require);
       } catch (err) {
         callback(err);
@@ -34,8 +39,15 @@ module.exports = function(content) {
   this.cacheable && this.cacheable();
 
   var loaderContext = this;
+  var loaderOptions = Object.assign({}, loaderUtils.getOptions(loaderContext));
   var callback = loaderContext.async();
   var pattern = /require\(['"](.*?)['"]\)/g;
+
+  // Validate options and prevent incorrect options
+  var validate = ajv.compile(schema);
+  if (!validate(loaderOptions)) {
+    return callback(new Error('loader options are incorrect'));
+  }
 
   var match, requires = [];
   while (match = pattern.exec(content)) {
@@ -46,7 +58,7 @@ module.exports = function(content) {
     })
   }
 
-  steed.map(requires, resolveFile.bind(null, loaderContext), function(err, results) {
+  steed.map(requires, resolveFile.bind(null, loaderContext, loaderOptions), function(err, results) {
     if (err) {
       return callback(err);
     }

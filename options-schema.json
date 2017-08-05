@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "rawString": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "additionalProperties": false
+}

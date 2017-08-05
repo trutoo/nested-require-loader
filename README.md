@@ -14,10 +14,10 @@ In your webpack config:
 
 ```js
 module: {
-  loaders: [
+  rules: [
     {
       test: /manifest.json$/,
-      loader: 'file-loader?name=manifest.json!nested-require-loader'
+      use: ['file-loader?name=manifest.json', 'nested-require-loader']
     }
   ]
 }
@@ -52,6 +52,50 @@ With each internal resource requested through require rather than just a plain p
       "type": "image/png"
     },
     ...
+  ]
+}
+```
+
+## Options
+
+Additional options may be applied to loader. If incorrect is specified, loader will throw an error.
+
+|Option|Type|Default value|Description|
+|---|---|---:|---|
+|`rawString`|**_Boolean_**|false|Ensures that no extra brackets are added if the type of returned value is a **_string_** |
+
+### Setting loader options
+
+#### Object
+
+```js
+module: {
+  rules: [
+    {
+      test: /.ext$/,
+      use: [
+        'other-loaders', 
+        {
+          loader: 'nested-require-loader',
+          options: {
+            rawString: false
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+#### Inline
+
+```js
+module: {
+  rules: [
+    {
+      test: /.ext$/,
+      use: ['other-loaders', 'nested-require-loader?rawString=false']
+    }
   ]
 }
 ```
