@@ -62,7 +62,7 @@ Additional options may be applied to loader. If incorrect is specified, loader w
 
 |Option|Type|Default value|Description|
 |---|---|---:|---|
-|`rawString`|**_Boolean_**|false|Ensures that no extra brackets are added if the type of returned value is a **_string_** |
+|`rawString`|**_Boolean_**|false|Ensures that no extra quotes are added if the type of returned value is a **_string_** |
 
 ### Setting loader options
 
