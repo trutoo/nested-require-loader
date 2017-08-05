@@ -1,6 +1,6 @@
 {
   "name": "nested-require-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simply a nested require loader for webpack",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,16 @@
     "url": "git+https://github.com/trutoo/nested-require-loader.git"
   },
   "author": "Trutoo AB",
+  "contributors": [
+    {
+      "name": "Erik Hughes (Swiftwork)",
+      "email": "erik.hughes@trutoo.com",
+      "url": "http://trutoo.com/"
+    },
+    {
+      "name": "Lukas Senionis (FrogTheFrog)"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/trutoo/nested-require-loader/issues"
