@@ -1,6 +1,6 @@
 {
   "name": "nested-require-loader",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simply a nested require loader for webpack",
   "main": "index.js",
   "scripts": {
